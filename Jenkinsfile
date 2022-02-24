@@ -1,4 +1,4 @@
-node(nodes){
+node(node1){
 
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * *')])])
 
@@ -15,7 +15,7 @@ stage('Build')
 sh  "${mavenHome}/bin/mvn clean package"
 }
 
-/* stage('SonarReport')
+stage('SonarReport')
 {
 sh "${mavenHome}/bin/mvn sonar:sonar"
 }
@@ -31,6 +31,6 @@ sshagent(['b240bfdc-04bb-4d64-94f1-fdd02f431cc8'])
 {
   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.127.208.183:/opt/apache-tomcat-9.0.56/webapps"
 }
-} */
+} 
 
 }
